@@ -36,6 +36,7 @@ def opt_problem(m, w, eps, v, teta_0, teta_1, kappa):
     optimal_ut = lab_sup( optimal_c, v , optimal_l, eps = eps)
     return optimal_l, optimal_c, optimal_ut
 optimal_l, optimal_c, optimal_ut = opt_problem(w, eps, v, teta_0, teta_1, kappa, m)
+
 # F. Print result
 print(f'Optimal labour supply is: {optimal_l:.3f}')
 print(f'Optimal consumption is: {optimal_c:.3f}')
