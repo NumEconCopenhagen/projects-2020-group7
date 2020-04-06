@@ -15,3 +15,5 @@ For this project we **loades three datasets** uploaded in this same folder besid
 The **results** of the project can be seen from running [dataproject.ipynb](dataproject.ipynb).
 **Dependencies:** Apart from a standard Anaconda Python 3 installation, the project requires the following installations:
 
+pandas_datareader # install with `pip install pandas-datareader`
+pydst # install with `pip install git+https://github.com/elben10/pydst`
