@@ -12,7 +12,7 @@ For this project we **loades three datasets** uploaded in this same folder besid
 2. TRDG.xlsx downloaded from statistikbanekn.dk
 3. TRDC.xlsx downloaded from statistikbanekn.dk
 
-The **results** of the project can be seen from running [Data project.ipynb]. If the interactive graphs don't work at the first attempt please rerun all the notebook.
+The **results** of the project can be seen from running [Data project.ipynb]. Please if the interactive graphs don't work at the first attempt rerun all the notebook.
 **Dependencies:** Apart from a standard Anaconda Python 3 installation, the project requires the following installations:
 
 pandas_datareader # install with `pip install pandas-datareader`  
