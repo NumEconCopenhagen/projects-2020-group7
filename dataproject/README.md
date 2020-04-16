@@ -6,7 +6,7 @@ The specific analysis of trade in goods tries to detect interesting information 
 Our project is structured in 4 main sections. In *Section 1* we import packages and in *Section 2* we construct, clean and prepare the dataframes that will be used to realise the figures of *section 3: Analysis* which can be considered the core of our project. Section 4 concludes with some personal statements regarding the results obtained.  
 All the data are from *Statistics Denmark* and are seasonally adjusted to allow measurement of real changes, patterns of growth or decline and to compare data from different point in time.
 
-For this project we **loades three datasets** uploaded in this same folder besides relying in the Statistics D:
+For this project we **loades three datasets** uploaded in this same folder besides relying in the Statistics Denmark API:
 
 1. TRDS.xlsx downloaded from statistikbanekn.dk
 2. TRDG.xlsx downloaded from statistikbanekn.dk
