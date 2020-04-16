@@ -10,32 +10,41 @@ from scipy import optimize
 m = 1 #cash-on-hand
 v = 10 #scale the disutility of labour
 eps = 0.3 #Frish-elasticity
-teta_0 = 0.4 #standard labour income tax
-teta_1 = 0.1 #top bracket labour income tax
+t_0 = 0.4 #standard labour income tax
+t_1 = 0.1 #top bracket labour income tax
 kappa = 0.4 #cut-off for the top labour income bracket
 w = 1 #rate-wage
+
 # B. define utility
-def lab_sup(c,v,l,eps):
-    return np.log(c) - v*(l**(1+1/eps))/(1+1/eps)
+def util(c,v,l,eps):
+    return np.log(c) - v*(l**(1+(1/eps)))/(1+(1/eps))
 
 # C. define constraint
-def cash_constr(m, teta_0, teta_1, w, l, kappa):
-    return m + w*l - (teta_0*w*l + teta_1*max(w*l - kappa, 0))
+def cash_constr(m, t_0, t_1, w, l, kappa):
+    return m + w*l - (t_0*w*l + t_1*max(w*l - kappa, 0))
 
 # D. Define objective function
-def optimal_choice( l, w, eps, teta_0, teta_1, kappa, v):
-    c = cash_constr(m, teta_0, teta_1, w, l, kappa)
-    return - lab_sup(c,v,l,eps)
+def optimal_choice( l, w, eps, t_0, t_1, kappa, v):
+    c = cash_constr(m, t_0, t_1, w, l, kappa)
+    return - util(c , v, l, eps)
+
 # E. Call optimizer and calculate optimum
-def opt_problem(m, w, eps, v, teta_0, teta_1, kappa):
-    res = optimize.minimize_scalar(optimal_choice, method='bounded',bounds=(0,1),
-    args=(w, eps, teta_0, teta_1, kappa, v))    
+def opt_problem(m, w, eps, v, t_0, t_1, kappa):
+    res = optimize.minimize_scalar(optimal_choice, method='bounded', bounds=(0,1), args=(w, eps, t_0, t_1, kappa, v))    
 # e.1 Calculate optimal l,x,u
-    optimal_l = res.x
-    optimal_c = cash_constr(m, teta_0, teta_1, w, optimal_l, kappa)
-    optimal_ut = lab_sup( optimal_c, v , optimal_l, eps = eps)
-    return optimal_l, optimal_c, optimal_ut
-optimal_l, optimal_c, optimal_ut = opt_problem(w, eps, v, teta_0, teta_1, kappa, m)
+    l = res.x
+    c = cash_constr(m, t_0, t_1, w, l, kappa)
+    ut = util(c, v, l, eps)
+    return l, c, ut
+
+optimal_l = opt_problem(m, w, eps, v, t_0, t_1, kappa)[0]
+optimal_c = opt_problem(m, w, eps, v, t_0, t_1, kappa)[1]
+optimal_ut = opt_problem(m, w, eps, v, t_0, t_1, kappa)[2]
+
+# F. Print result
+print(f'Optimal labour supply is: {optimal_l:.3f}')
+print(f'Optimal consumption is: {optimal_c:.3f}')
+print(f'maximized utility is: {optimal_ut:.3f}')
 
 # F. Print result
 print(f'Optimal labour supply is: {optimal_l:.3f}')
